@@ -1,0 +1,4 @@
+[submodule "_cpm"]
+	path = _cpm
+	url = https://github.com/charun80/CPM
+	branch = pylib

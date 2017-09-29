@@ -2,3 +2,7 @@
 	path = _cpm
 	url = https://github.com/charun80/CPM
 	branch = pylib
+[submodule "_epiclfow"]
+	path = _epiclfow
+	url = https://github.com/charun80/EpicFlow
+	branch = pylib

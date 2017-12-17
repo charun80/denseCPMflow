@@ -8,7 +8,7 @@ Created on Fri Sep 29 12:04:43 2017
 
 
 __all__ = ["KITTI_PARAM_MODE", "SINTEL_PARAM_MODE", "MIDDLEBURY_PARAM_MODE", \
-            "estimateFlow", \
+            "estimateFlow", "cFlowEstimator", \
             "writeMatches", "readMatches", \
             "computeSobelEdges", \
             "IllegalEpicFlowArgumentError", \

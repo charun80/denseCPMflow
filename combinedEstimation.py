@@ -8,7 +8,7 @@ Created on Fri Sep 29 12:05:45 2017
 from __future__ import print_function
 
 __all__ = [ "KITTI_PARAM_MODE", "SINTEL_PARAM_MODE", "MIDDLEBURY_PARAM_MODE", \
-            "estimateFlow" ]
+            "estimateFlow", "cFlowEstimator" ]
 
 KITTI_PARAM_MODE="kitti"
 SINTEL_PARAM_MODE="sintel"
@@ -68,6 +68,29 @@ def estimateFlow( img1, img2, img1Edges=None, nCPMSteps=3, variParams=None, epic
     return _denseCPMFlowResStruct( matches=lMatches, flowfield=flowField, variParams=variParams, epicParams=epicParams, nCPMSteps=nCPMSteps )
 
     
+######################################################################################################################
+
+
+class cFlowEstimator(object):
+    
+    mCPMSteps = None
+    mVariParams = None
+    mEpicParams = None
+    mEpicParamMode = None
     
     
+    def __init__(self, nCPMSteps=3, variParams=None, epicParams=None, epicParamMode=None ):
+        self.mCPMSteps = nCPMSteps
+        self.mVariParams = variParams
+        self.mEpicParams = epicParams
+        self.mEpicParamMode = epicParamMode
+    
+    
+    def __apply__(self, img1, img2, img1Edges=None ):
+        res = estimateFlow( img1, img2, img1Edges, self.mCPMSteps, self.mVariParams, self.mEpicParams, self.mEpicParamMode )
+        self.mVariParams = res.variParams
+        self.mEpicParams = res.epicParams
+        self.mCPMSteps = res.nCPMSteps
+        
+        return res
     
